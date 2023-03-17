@@ -2,14 +2,27 @@
 #define TINTERFACE_H
 
 #include <QWidget>
-#include <QPushButton>
+#include "matrix.h"
+
+namespace Ui {
+    class TInterface;
+}
+
 class TInterface : public QWidget
 {
     Q_OBJECT
-    QPushButton* button_main;
 
 public:
     TInterface(QWidget *parent = nullptr);
     ~TInterface();
+public slots:
+    void inputValues();
+    void transpose();
+    void rank();
+    void determinant();
+
+private:
+    Ui::TInterface *ui;
+    MatrixSquare matr;
 };
 #endif // TINTERFACE_H

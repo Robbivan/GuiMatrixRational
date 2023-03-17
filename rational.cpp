@@ -83,6 +83,13 @@ std::ostream& operator<<(std::ostream& out, const TRational& rational) {
     return out;
 }
 
+QString& operator<<(QString& s, const TRational& rational) {
+    s += QString().setNum(rational.num);
+    s += QStringLiteral(" / ");
+    s += QString().setNum(rational.div);
+    return s;
+}
+
 std::istream& operator>>(std::istream& in, TRational& rational) {
     in >> rational.num >> rational.div;
     return in;
@@ -90,6 +97,10 @@ std::istream& operator>>(std::istream& in, TRational& rational) {
 
 void TRational::algorithmEuclidian(){
     int a = num, b = div;
+    if (a == 0 || b == 0) {
+        return;
+    }
+
     if (a < b) {
         std::swap(a, b);
     }

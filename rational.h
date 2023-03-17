@@ -1,6 +1,7 @@
 #ifndef TRATIONAL_H
 #define TRATIONAL_H
 #include <iostream>
+#include <QString>
 
 class TRational
 {
@@ -35,6 +36,8 @@ public:
 
     friend std::ostream& operator<<(std::ostream& out, const TRational& num);
     friend std::istream& operator>>(std::istream& in, TRational& num);
+
+    friend QString& operator<<(QString& out, const TRational& num);
 
 private:
     void algorithmEuclidian();
