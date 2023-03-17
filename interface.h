@@ -24,5 +24,7 @@ public slots:
 private:
     Ui::TInterface *ui;
     MatrixSquare matr;
+
+    void updateMatrix();
 };
 #endif // TINTERFACE_H

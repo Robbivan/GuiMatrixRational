@@ -26,11 +26,21 @@ std::ostream& operator<<(std::ostream& out, const MatrixSquare& matrix){
        for (size_t j = 0; j <  matrix.size_matrix; ++j){
            out << matrix.matrix[i * matrix.size_matrix + j] << '\t';
        }
-       out<<'\n';
+       out << '\n';
     }
     return out;
 }
 
+QString& operator<<(QString& s, const MatrixSquare& matrix){
+    for (size_t i = 0; i < matrix.size_matrix; ++i){
+       for (size_t j = 0; j <  matrix.size_matrix; ++j){
+           s << matrix.matrix[i * matrix.size_matrix + j];
+           s += QStringLiteral("\t\t");
+       }
+       s += QStringLiteral("\n");
+    }
+    return s;
+}
 
 MatrixSquare& MatrixSquare::operator=(const MatrixSquare &other) {
     size_matrix = other.size_matrix;

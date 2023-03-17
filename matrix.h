@@ -20,7 +20,10 @@ public:
     MatrixSquare transposed()const;
     number determinant()const;
     size_t rank()const;
+
     friend std::ostream& operator<<(std::ostream& out, const MatrixSquare& matrix);
+    friend QString& operator<<(QString& out, const MatrixSquare& matrix);
+
 private:
     size_t size_matrix;
     // smart pointers since C++11
