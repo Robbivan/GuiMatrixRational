@@ -28,7 +28,7 @@ TInterface::~TInterface() {
 }
 
 void TInterface::inputValues() {
-    addValueMatrixDialog dialog(this);
+    AddValueMatrixDialog dialog(this);
     if (dialog.exec() == QDialog::Accepted) {
         matr = MatrixSquare(dialog.getSize(), dialog.getVector());
     }

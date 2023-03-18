@@ -2,12 +2,12 @@
 #include "ui_addvaluematrixdialog.h"
 #include <QMessageBox>
 
-addValueMatrixDialog::addValueMatrixDialog(QWidget *parent) :
+AddValueMatrixDialog::AddValueMatrixDialog(QWidget *parent) :
     QDialog(parent),
     valNum(new QIntValidator(0, INT_MAX, this)),
     valDiv(new QIntValidator(0, INT_MAX, this)),
     valSize(new QIntValidator(0, INT_MAX, this)),
-    ui(new Ui::addValueMatrixDialog)
+    ui(new Ui::AddValueMatrixDialog)
 {
     ui->setupUi(this);
 
@@ -15,15 +15,15 @@ addValueMatrixDialog::addValueMatrixDialog(QWidget *parent) :
     ui->dividerLineEdit->setValidator(valDiv);
     ui->sizeLineEdit->setValidator(valSize);
     connect(ui->sizeButton, &QPushButton::clicked,
-            this, &addValueMatrixDialog::inputSize);
+            this, &AddValueMatrixDialog::inputSize);
     connect(ui->nextValueButton, &QPushButton::clicked,
-            this, &addValueMatrixDialog::addValue);
+            this, &AddValueMatrixDialog::addValue);
 
     setWindowTitle(QStringLiteral("Ввод матрицы:"));
 
 }
 
-void addValueMatrixDialog::accept(){
+void AddValueMatrixDialog::accept(){
     if (size == 0 || size * size != arrNums.size()) {
         QMessageBox::warning(this, QStringLiteral("ОШИБКА"), QStringLiteral("Не до конца введены данные!!!"));
         return;
@@ -32,22 +32,22 @@ void addValueMatrixDialog::accept(){
     QDialog::accept();
 }
 
-std::vector<number> addValueMatrixDialog::getVector() {
+std::vector<number> AddValueMatrixDialog::getVector() {
     return arrNums;
 }
 
-size_t addValueMatrixDialog::getSize() {
+size_t AddValueMatrixDialog::getSize() {
     return size;
 }
 
-addValueMatrixDialog::~addValueMatrixDialog() {
+AddValueMatrixDialog::~AddValueMatrixDialog() {
     delete ui;
     delete valNum;
     delete valDiv;
     delete valSize;
 }
 
-void addValueMatrixDialog::inputSize() {
+void AddValueMatrixDialog::inputSize() {
     size = ui->sizeLineEdit->text().toInt();
     if (size == 0) {
         QMessageBox::warning(this, QStringLiteral("ОШИБКА"), QStringLiteral("Размер не может быть равен 0!!!"));
@@ -62,7 +62,7 @@ void addValueMatrixDialog::inputSize() {
     ui->mainLabel->setText(QStringLiteral("Ввести значение a[0][0]:"));
 }
 
-void addValueMatrixDialog::addValue() {
+void AddValueMatrixDialog::addValue() {
     int div = ui->dividerLineEdit->text().toInt(),
         num = ui->numeratorLineEdit->text().toInt();
     size_t cur_size = arrNums.size();
@@ -80,6 +80,9 @@ void addValueMatrixDialog::addValue() {
     ui->numeratorLineEdit->clear();
     if (size * size == cur_size) {
         ui->mainLabel->setText(QStringLiteral("Ввести значение a[*][*]:"));
+        ui->dividerLineEdit->setEnabled(false);
+        ui->numeratorLineEdit->setEnabled(false);
+        ui->nextValueButton->setEnabled(false);
     } else {
         ui->mainLabel->setText(QString("Ввести значение a[%1][%2]:").arg(cur_size / size).arg(cur_size % size));
     }

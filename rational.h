@@ -31,8 +31,8 @@ public:
     friend TRational operator -(TRational left, const TRational& right);
     friend TRational operator *(TRational left, const TRational& right);
     friend TRational operator /(TRational left, const TRational& right);
-    friend bool operator ==(TRational left, TRational right);
-    friend bool operator !=(TRational left, TRational right);
+    friend bool operator ==(const TRational& left, const TRational& right);
+    friend bool operator !=(const TRational& left, const TRational& right);
 
     friend std::ostream& operator<<(std::ostream& out, const TRational& num);
     friend std::istream& operator>>(std::istream& in, TRational& num);

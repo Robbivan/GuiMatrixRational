@@ -68,14 +68,12 @@ TRational operator /(TRational left, const TRational& right) {
     return left /= right;
 }
 
-bool operator ==(TRational left, TRational right) {
-    left.algorithmEuclidian();
-    right.algorithmEuclidian();
+bool operator ==(const TRational& left, const TRational& right) {
     return ((left.num == right.num) && (left.div == right.div)) ||
             ((left.num == 0) && (right.num == 0));
 }
 
-bool operator !=(TRational left, TRational right) {
+bool operator !=(const TRational& left, const TRational& right) {
     return !(left == right);
 }
 

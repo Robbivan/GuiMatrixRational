@@ -7,16 +7,16 @@
 #include "number.h"
 
 namespace Ui {
-    class addValueMatrixDialog;
+    class AddValueMatrixDialog;
 }
 
-class addValueMatrixDialog : public QDialog
+class AddValueMatrixDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit addValueMatrixDialog(QWidget *parent = nullptr);
-    ~addValueMatrixDialog();
+    explicit AddValueMatrixDialog(QWidget *parent = nullptr);
+    ~AddValueMatrixDialog();
 
     std::vector<number> getVector();
     size_t getSize();
@@ -26,7 +26,7 @@ public slots:
     void addValue();
 private:
     QIntValidator *valNum, *valDiv, *valSize;
-    Ui::addValueMatrixDialog *ui;
+    Ui::AddValueMatrixDialog *ui;
     size_t size = 0;
     std::vector<number> arrNums;
 protected:
