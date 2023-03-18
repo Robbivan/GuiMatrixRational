@@ -19,11 +19,11 @@ public:
     TRational& operator *=(const TRational& other);
     TRational& operator /=(const TRational& other);
 
-    double get_num() const{
+    int get_num() const{
         return num;
     }
 
-    double get_div() const{
+    int get_div() const{
         return div;
     }
 
