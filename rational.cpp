@@ -5,14 +5,13 @@ TRational::TRational():num(0),div(1)
 
 }
 
-TRational::TRational(int _num):num(_num),div(1)
-{
+TRational::TRational(int _num):num(_num),div(1) {
 
 }
 
 
 TRational::TRational(int _num, int _div) : num(_num), div(_div) {
-
+    algorithmEuclidian();
 }
 
 
@@ -27,6 +26,7 @@ TRational TRational::operator +() const {
 TRational& TRational::operator +=(const TRational& other) {
     num = num*other.div+other.num*div;
     div*=other.div;
+
     algorithmEuclidian();
     return *this;
 }
@@ -71,7 +71,8 @@ TRational operator /(TRational left, const TRational& right) {
 bool operator ==(TRational left, TRational right) {
     left.algorithmEuclidian();
     right.algorithmEuclidian();
-    return (left.num == right.num) && (left.div == right.div);
+    return ((left.num == right.num) && (left.div == right.div)) ||
+            ((left.num == 0) && (right.num == 0));
 }
 
 bool operator !=(TRational left, TRational right) {
@@ -96,8 +97,10 @@ std::istream& operator>>(std::istream& in, TRational& rational) {
 }
 
 void TRational::algorithmEuclidian(){
-    int a = num, b = div;
-    if (a == 0 || b == 0) {
+    int a = abs(num), b = abs(div);
+    if (a == 0) {
+        num = 0;
+        div = 1;
         return;
     }
 

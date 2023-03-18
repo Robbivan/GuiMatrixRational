@@ -9,7 +9,6 @@ addValueMatrixDialog::addValueMatrixDialog(QWidget *parent) :
     valSize(new QIntValidator(0, INT_MAX, this)),
     ui(new Ui::addValueMatrixDialog)
 {
-    setWindowTitle(QStringLiteral("Ответ на запрос"));
     ui->setupUi(this);
 
     ui->numeratorLineEdit->setValidator(valNum);
@@ -19,6 +18,9 @@ addValueMatrixDialog::addValueMatrixDialog(QWidget *parent) :
             this, &addValueMatrixDialog::inputSize);
     connect(ui->nextValueButton, &QPushButton::clicked,
             this, &addValueMatrixDialog::addValue);
+
+    setWindowTitle(QStringLiteral("Ввод матрицы:"));
+
 }
 
 void addValueMatrixDialog::accept(){
