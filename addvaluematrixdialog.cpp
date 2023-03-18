@@ -57,6 +57,7 @@ void AddValueMatrixDialog::inputSize() {
     ui->numeratorLineEdit->setEnabled(true);
     ui->dividerLineEdit->setEnabled(true);
     ui->nextValueButton->setEnabled(true);
+    ui->isNegativeCheckBox->setEnabled(true);
     ui->sizeButton->setEnabled(false);
     ui->sizeLineEdit->setEnabled(false);
     ui->mainLabel->setText(QStringLiteral("Ввести значение a[0][0]:"));
@@ -66,6 +67,8 @@ void AddValueMatrixDialog::addValue() {
     int div = ui->dividerLineEdit->text().toInt(),
         num = ui->numeratorLineEdit->text().toInt();
     size_t cur_size = arrNums.size();
+    bool is_neg = ui->isNegativeCheckBox->isChecked();
+
     if (size * size == cur_size) {
         QMessageBox::warning(this, QStringLiteral("ОШИБКА"), QStringLiteral("Все значения уже заполнены!"));
         return;
@@ -74,7 +77,7 @@ void AddValueMatrixDialog::addValue() {
         QMessageBox::warning(this, QStringLiteral("ОШИБКА"), QStringLiteral("Число не может делиться на ноль!!!"));
         return;
     }
-    arrNums.emplace_back(num, div);
+    arrNums.emplace_back(is_neg ? -num : num, div);
     ++cur_size;
     ui->dividerLineEdit->clear();
     ui->numeratorLineEdit->clear();
@@ -83,6 +86,7 @@ void AddValueMatrixDialog::addValue() {
         ui->dividerLineEdit->setEnabled(false);
         ui->numeratorLineEdit->setEnabled(false);
         ui->nextValueButton->setEnabled(false);
+        ui->isNegativeCheckBox->setEnabled(false);
     } else {
         ui->mainLabel->setText(QString("Ввести значение a[%1][%2]:").arg(cur_size / size).arg(cur_size % size));
     }

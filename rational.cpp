@@ -109,6 +109,15 @@ void TRational::algorithmEuclidian(){
         a = a % b;
         std::swap(a, b);
     }
-    num/=b;
-    div/=b;
+    num /= b;
+    div /= b;
+
+    if (num < 0 && div < 0) {
+        num *= -1;
+        div *= -1;
+    } else if (num < 0 || div < 0) {
+        num = -1 * abs(num);
+        div = abs(div);
+    }
+
 }

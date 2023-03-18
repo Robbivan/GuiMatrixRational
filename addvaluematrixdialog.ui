@@ -82,6 +82,16 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QCheckBox" name="isNegativeCheckBox">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Отрицательное</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
